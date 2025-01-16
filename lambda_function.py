@@ -4,7 +4,7 @@ from src.helpers import *
 
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logger.setLevel("INFO")
 logging.getLogger("botocore").setLevel(logging.WARNING)
 
 
