@@ -40,7 +40,7 @@ def lambda_handler(event, context):
         logger.exception(e)
         client = boto3.client("sns")
         message = f'Falha no processamento da lambda conciliacao-r56. Detalhes do erro: {e}.'
-        client.publish(TargetArn='arn:aws:sns:sa-east-1:213116324309:LambdaFailsNotification', Message=message, Subject=f"Alerta. Erro de processamento: CantuService.")
+        client.publish(TargetArn='arn:aws:sns:sa-east-1:213116324309:LambdaFailsNotification', Message=message, Subject=f"Alerta. Erro de processamento: conciliacao-r56.")
 
 
 if __name__=="__main__":
@@ -54,7 +54,7 @@ if __name__=="__main__":
                     "MessageId": "a6c7c5d8-febb-5d63-afb1-9bd689408145",
                     "TopicArn": "arn:aws:sns:sa-east-1:213116324309:AutoX-JobTabSacados",
                     "Subject": "Amazon S3 Notification",
-                    "Message": "{'Records':[{'eventVersion':'2.1','eventSource':'aws:s3','awsRegion':'sa-east-1','eventTime':'2024-01-02T20: 44: 42.342Z','eventName':'ObjectCreated:Put','userIdentity':{'principalId':'AWS:AIDATDHVZBHKUXIVMO6GT'},'requestParameters':{'sourceIPAddress':'179.111.200.179'},'responseElements':{'x-amz-request-id':'T7WACQQ36GHVWW6X','x-amz-id-2':'lS+XeP+lDIfCn3xqtWqMTTugwTklVrM/bR6wAFpKaZ6DchR62rLBXoJptggnxv9VjdkSZJZcc/cwrdUdkPweechiq+BQvvAu'},'s3':{'s3SchemaVersion':'1.0','configurationId':'AutoX-RunTabSacados','bucket':{'name':'anga-datalake-bronze','ownerIdentity':{'principalId':'A3D5NJHHCIRCE2'},'arn':'arn:aws:s3: : :anga-datalake-bronze'},'object':{'key':'r56/UY3/R56_030125','size':249,'eTag':'07116e579c44288cb4d17b626b127dca','versionId':'r0AnxsqlrkZ4zHFQ4FSAmiO1sd0drghQ','sequencer':'00659475BA4A93FBC7'}}}]}",
+                    "Message": "{'Records':[{'eventVersion':'2.1','eventSource':'aws:s3','awsRegion':'sa-east-1','eventTime':'2024-01-02T20: 44: 42.342Z','eventName':'ObjectCreated:Put','userIdentity':{'principalId':'AWS:AIDATDHVZBHKUXIVMO6GT'},'requestParameters':{'sourceIPAddress':'179.111.200.179'},'responseElements':{'x-amz-request-id':'T7WACQQ36GHVWW6X','x-amz-id-2':'lS+XeP+lDIfCn3xqtWqMTTugwTklVrM/bR6wAFpKaZ6DchR62rLBXoJptggnxv9VjdkSZJZcc/cwrdUdkPweechiq+BQvvAu'},'s3':{'s3SchemaVersion':'1.0','configurationId':'AutoX-RunTabSacados','bucket':{'name':'anga-datalake-bronze','ownerIdentity':{'principalId':'A3D5NJHHCIRCE2'},'arn':'arn:aws:s3: : :anga-datalake-bronze'},'object':{'key':'r56/BMP/r56_SCM_FUNDO DE INVESTIMENTO EM DIREITOS CREDITÓRIOS ANGÁ MULTI CONSIGNADOS_PROCESSADO_EM__03_01_2025_-_18_01_18.csv','size':249,'eTag':'07116e579c44288cb4d17b626b127dca','versionId':'r0AnxsqlrkZ4zHFQ4FSAmiO1sd0drghQ','sequencer':'00659475BA4A93FBC7'}}}]}",
                     "Timestamp": "2024-01-02T20:44:43.525Z",
                     "SignatureVersion": "1",
                     "Signature": "bdSUSx8CgHlHKTGbHX1i5qxlKwDA47csmuzsuU8oCuCubvozzmxVTJW/2B+MoKVsa7+WFXvj4xiLyrYlRT0iedrPPz0o6CbYncbcaC2G1vF0j7r9OdKDMuM2LPEVMGR63/3KNvRgud4ykkimHClt7i9E5P2441+RSOKbDmunCNAZUUlpk1yIInBHh3dji+ZwO66FVLlbSXjc1m8bQzhl8piimkv0cH271pVKUZSCyrDpNhU9S4/4k0ZT6Gxifnl7l69jMsCwMDMurdP4pWz00MysQkUa/3ef+no1dcrNJERv0E8WRud/3P9mod4ewmMW9G9VInXL4RZOt6BShtpwZA==",

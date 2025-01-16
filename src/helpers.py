@@ -40,6 +40,9 @@ def clean_and_format_data(df, key):
     logger.info("Tratando dataframe")
     df = rename_cols(df)
 
+    if '/BMP/' in key and 'OPERACOES DE ALIENACAO E CESSAO FIDUCIARIA' in df.columns:
+        df = df.iloc[4:].reset_index(drop=True)
+
     origin_folder = key.split('/')[1].lower().replace(' ', '_')
     datetime_format = determine_date_format(df['dt_pedido'].iloc[0])
     date_format = determine_date_format(df['dt_prevista_repasse'].iloc[0])
@@ -62,6 +65,9 @@ def clean_and_format_data(df, key):
 
     if 'vl_repassado' not in df.columns:
         df.loc[:, 'vl_repassado'] = 0.0
+
+    if 'vl_cedido_atualizado' not in df.columns:
+        df.loc[:, 'vl_cedido_atualizado'] = 0.0
 
     df = apply_dtypes(df)
 
@@ -104,6 +110,8 @@ def apply_dtypes(df):
 def rename_cols(df):
     logger.info("Renomeando colunas")
 
+    df.columns = df.columns.str.upper()
+
     renamed_cols = {
         'CPF': 'cpf_cnpj_sacado',
         'DATA DO PEDIDO': 'dt_pedido',
@@ -117,7 +125,8 @@ def rename_cols(df):
         'NUMERO DO PROTOCOLO': 'numero_protocolo',
         'STATUS DO PROTOCOLO': 'status_protocolo',
         'DATA EFETIVA DE PAGAMENTO': 'dt_efetiva_pagamento',
-        'VALOR REPASSADO': 'vl_repassado'
+        'VALOR REPASSADO': 'vl_repassado',
+        'IDENTIFICADOR': 'identificador_solicitacao'
     }
 
     df = df.rename(columns=renamed_cols)
