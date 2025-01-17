@@ -32,7 +32,7 @@ def lambda_handler(event, context):
         df = clean_and_format_data(df, s3_file_name)
 
         logger.info(f'Salvando parquet')
-        wr.s3.to_parquet(df, f's3://anga-datalake-silver/r56/', dataset=True, mode='append', partition_cols=['year', 'month', 'day', 'origem'], database='db_anga', table='tbdwr_arquivo_r56')
+        wr.s3.to_parquet(df, f's3://anga-datalake-gold/r56/', dataset=True, mode='append', partition_cols=['year', 'month', 'day', 'origem'], database='db_anga', table='tbdwr_arquivo_r56')
 
         logger.info('Processo finalizado com sucesso.')
 
