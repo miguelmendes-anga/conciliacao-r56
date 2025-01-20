@@ -71,10 +71,28 @@ def clean_and_format_data(df, key):
 
     df = apply_dtypes(df)
 
+    df = correct_status(df)
+
     cols_to_keep = ['cpf_cnpj_sacado', 'dt_pedido', 'identificador_solicitacao', 'status_periodo', 'dt_prevista_repasse', 'vl_cedido_original', 'vl_cedido_atualizado', 'numero_protocolo', 'dt_efetiva_pagamento', 'vl_repassado', 'origem', 'year', 'month', 'day']
 
     return df[cols_to_keep]
 
+
+def correct_status(df):
+    depara = {
+        'QUITADA': 3,
+        'CANCELADA': 2,
+        'PAGO': 1,
+        'NÃO ACATADO': 1,
+        'EM PROCESSO DE PAGAMENTO': 1,
+        'EM PROCESSO DE CANCELAMENTO': 1,
+        'EM PROCESSAMENTO': 1,
+        'GARANTIDA': 0
+    }
+
+    df['status_periodo'] = df['status_periodo'].apply(lambda x: f'{depara.get(x, 4)} - {x}')
+
+    return df
 
 def apply_dtypes(df):
     logger.info("Aplicando tipagem de colunas")

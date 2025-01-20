@@ -21,7 +21,7 @@ with estoque as(
            CONCAT(identificador_solicitacao, '_', DATE_FORMAT(dt_prevista_repasse, '%Y%m%d')) AS chave_r56,
            ROW_NUMBER() OVER (
                PARTITION BY CONCAT(identificador_solicitacao, '_', DATE_FORMAT(dt_prevista_repasse, '%Y%m%d')) 
-               ORDER BY dt_pedido DESC
+               ORDER BY status_periodo DESC
            ) AS row_num
     FROM db_anga.tbdwr_arquivo_r56
     WHERE CONCAT(identificador_solicitacao, '_', DATE_FORMAT(dt_prevista_repasse, '%Y%m%d')) IN (
